@@ -25,6 +25,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-app-bar :clipped-left="clipped" fixed app>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
     </v-app-bar>
     <v-main>
@@ -48,17 +49,17 @@ export default {
       items: [
         {
           icon: 'mdi-apps',
-          title: 'Comunidades',
+          title: 'Welcome',
           to: '/',
         },
         {
           icon: 'mdi-chart-bubble',
-          title: 'Aporta',
+          title: 'Inspire',
           to: '/inspire',
         },
       ],
       miniVariant: false,
-      right: false,
+      right: true,
       rightDrawer: false,
       title: 'Fratello',
     }
