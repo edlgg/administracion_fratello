@@ -30,12 +30,16 @@
             </v-card>
           </div>
           <div v-if="cosa">
+            <v-btn @click="toggle(cosa.nombre)" color="primary">
+              Regresar
+            </v-btn>
             <v-card
               v-for="cosa in cositas"
               :key="cosa.nombre"
               style="margin-bottom: 30px"
             >
               <v-card-title class="headline"> {{ cosa.nombre }}</v-card-title>
+              <v-img :src="cosa.src" height="200px"></v-img>
               <v-card-text>
                 <p v-if="cosa.tipo == 'evento'">Nombre: {{ cosa.nombre }}</p>
                 <p v-if="cosa.tipo == 'evento'">Fecha: {{ cosa.fecha }}</p>
@@ -53,9 +57,6 @@
                 <v-spacer />
               </v-card-actions>
             </v-card>
-            <v-btn @click="toggle(cosa.nombre)" color="primary">
-              Regresar
-            </v-btn>
           </div>
         </v-col>
       </v-row>
