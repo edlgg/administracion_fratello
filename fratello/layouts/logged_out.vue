@@ -1,9 +1,5 @@
 <template>
   <v-app dark>
-    <v-app-bar :clipped-left="clipped" fixed app>
-      <v-toolbar-title v-text="title" />
-      <v-spacer />
-    </v-app-bar>
     <v-main>
       <v-container>
         <nuxt />
@@ -17,7 +13,6 @@
 
 <script>
 export default {
-  // middleware: ['isLoggedIn'],
   data() {
     return {
       clipped: false,
@@ -38,14 +33,8 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Fratello',
-      logout: '   logout',
+      title: 'Fratello!!!!',
     }
-  },
-  methods: {
-    async logOut() {
-      await this.$fire.auth.signOut()
-    },
   },
 }
 </script>
