@@ -2,65 +2,75 @@
   <div>
     <div v-if="user">
       <v-btn color="primary" @click="logOut">Log out</v-btn>
-      <v-row justify="center" align="center">
-        <v-col cols="12" sm="8" md="6">
-          <div class="text-center">
-            <vuetify-logo />
-          </div>
-          <div v-if="!cosa">
-            <v-card
-              v-for="comunidad in comunidades"
-              :key="comunidad.nombre"
-              style="margin-bottom: 30px"
-            >
-              <v-card-title class="headline">
-                {{ comunidad.nombre }}</v-card-title
+      <v-btn
+        v-if="user.includes('admin')"
+        color="secondary"
+        @click="config = !config"
+        >Config</v-btn
+      >
+      <div v-if="!config">
+        <v-row justify="center" align="center">
+          <v-col cols="12" sm="8" md="6">
+            <div class="text-center">
+              <vuetify-logo />
+            </div>
+            <div v-if="!cosa">
+              <v-card
+                v-for="comunidad in comunidades"
+                :key="comunidad.nombre"
+                style="margin-bottom: 30px"
               >
-              <v-img :src="comunidad.src" height="200px"></v-img>
-              <v-card-text>
-                <p>Estado: {{ comunidad.estado }}</p>
-                <p>Número de habiantes: {{ comunidad.habitantes }}</p>
-              </v-card-text>
-              <v-card-actions>
-                <v-spacer />
-                <v-btn @click="toggle(comunidad.nombre)" color="primary">
-                  Ver Más
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </div>
-          <div v-if="cosa">
-            <v-btn @click="toggle(cosa.nombre)" color="primary">
-              Regresar
-            </v-btn>
-            <v-card
-              v-for="cosa in cositas"
-              :key="cosa.nombre"
-              style="margin-bottom: 30px"
-            >
-              <v-card-title class="headline"> {{ cosa.nombre }}</v-card-title>
-              <v-img :src="cosa.src" height="200px"></v-img>
-              <v-card-text>
-                <p v-if="cosa.tipo == 'evento'">Nombre: {{ cosa.nombre }}</p>
-                <p v-if="cosa.tipo == 'evento'">Fecha: {{ cosa.fecha }}</p>
-                <p v-if="cosa.tipo == 'evento'">
-                  Descripcion: {{ cosa.descripcion }}
-                </p>
-                <p v-if="cosa.tipo == 'casa'">
-                  Direccion: {{ cosa.direccion }}
-                </p>
-                <p v-if="cosa.tipo == 'casa'">
-                  Habitantes: {{ cosa.habitantes }}
-                </p>
-              </v-card-text>
-              <v-card-actions>
-                <v-spacer />
-              </v-card-actions>
-            </v-card>
-          </div>
-        </v-col>
-      </v-row>
+                <v-card-title class="headline">
+                  {{ comunidad.nombre }}</v-card-title
+                >
+                <v-img :src="comunidad.src" height="200px"></v-img>
+                <v-card-text>
+                  <p>Estado: {{ comunidad.estado }}</p>
+                  <p>Número de habiantes: {{ comunidad.habitantes }}</p>
+                </v-card-text>
+                <v-card-actions>
+                  <v-spacer />
+                  <v-btn @click="toggle(comunidad.nombre)" color="primary">
+                    Ver Más
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </div>
+            <div v-if="cosa">
+              <v-btn @click="toggle(cosa.nombre)" color="primary">
+                Regresar
+              </v-btn>
+              <v-card
+                v-for="cosa in cositas"
+                :key="cosa.nombre"
+                style="margin-bottom: 30px"
+              >
+                <v-card-title class="headline"> {{ cosa.nombre }}</v-card-title>
+                <v-img :src="cosa.src" height="200px"></v-img>
+                <v-card-text>
+                  <p v-if="cosa.tipo == 'evento'">Nombre: {{ cosa.nombre }}</p>
+                  <p v-if="cosa.tipo == 'evento'">Fecha: {{ cosa.fecha }}</p>
+                  <p v-if="cosa.tipo == 'evento'">
+                    Descripcion: {{ cosa.descripcion }}
+                  </p>
+                  <p v-if="cosa.tipo == 'casa'">
+                    Direccion: {{ cosa.direccion }}
+                  </p>
+                  <p v-if="cosa.tipo == 'casa'">
+                    Habitantes: {{ cosa.habitantes }}
+                  </p>
+                </v-card-text>
+                <v-card-actions>
+                  <v-spacer />
+                </v-card-actions>
+              </v-card>
+            </div>
+          </v-col>
+        </v-row>
+      </div>
+      <div v-if="config"><config /></div>
     </div>
+
     <div v-if="!user">
       <v-row>
         <v-col class="text-center">
@@ -104,6 +114,7 @@
 <script>
 // import { ref } from 'vue'
 import VuetifyLogo from '~/components/VuetifyLogo.vue'
+import Config from '~/components/Config.vue'
 
 export default {
   setup() {},
@@ -113,13 +124,15 @@ export default {
       comunidad: '',
       cosas: [],
       cosa: false,
-      user: null,
+      user: '',
       email: '',
       password: '',
+      config: false,
     }
   },
   components: {
     VuetifyLogo,
+    Config,
   },
   computed: {
     cositas() {
