@@ -12,7 +12,7 @@
     <v-btn color="primary" @click="add_comunidad">Agregar</v-btn>
     <p>---</p>
 
-    <h2>Agregar Evento</h2>
+    <h2>Agregar Evento/Colaborador/Casa</h2>
     <v-text-field v-model="evento.comunidad" label="comunidad"></v-text-field>
     <v-text-field
       v-model="evento.descripcion"
@@ -23,9 +23,10 @@
     <v-text-field v-model="evento.fecha" label="fecha"></v-text-field>
     <v-text-field v-model="evento.nombre" label="nombre"></v-text-field>
     <v-text-field v-model="evento.src" label="src"></v-text-field>
+    <v-text-field v-model="evento.telefono" label="telefono"></v-text-field>
     <v-text-field
       v-model="evento.tipo"
-      label="tipo (evento o casa)"
+      label="tipo (evento, casa o colaborador)"
     ></v-text-field>
     <v-btn color="primary" @click="add_cosa">Agregar</v-btn>
     <p>--</p>
@@ -46,6 +47,7 @@ export default {
         habitantes: '',
         fecha: '',
         src: '',
+        telefono: '',
       },
     }
   },

@@ -48,7 +48,6 @@
                 <v-card-title class="headline"> {{ cosa.nombre }}</v-card-title>
                 <v-img :src="cosa.src" height="200px"></v-img>
                 <v-card-text>
-                  <p v-if="cosa.tipo == 'evento'">Nombre: {{ cosa.nombre }}</p>
                   <p v-if="cosa.tipo == 'evento'">Fecha: {{ cosa.fecha }}</p>
                   <p v-if="cosa.tipo == 'evento'">
                     Descripcion: {{ cosa.descripcion }}
@@ -58,6 +57,9 @@
                   </p>
                   <p v-if="cosa.tipo == 'casa'">
                     Habitantes: {{ cosa.habitantes }}
+                  </p>
+                  <p v-if="cosa.tipo == 'colaborador'">
+                    Teléfono: {{ cosa.telefono }}
                   </p>
                 </v-card-text>
                 <v-card-actions>
